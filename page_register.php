@@ -1,3 +1,8 @@
+<?php
+session_start();
+var_dump($_SESSION);
+require('functions.php');
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -38,7 +43,7 @@
                         <span class="text-white opacity-50 ml-auto mr-2 hidden-sm-down">
                             Уже зарегистрированы?
                         </span>
-                        <a href="page_login.html" class="btn-link text-white ml-auto ml-sm-0">
+                        <a href="page_login.php" class="btn-link text-white ml-auto ml-sm-0">
                             Войти
                         </a>
                     </div>
@@ -59,19 +64,18 @@
                             </div>
                             <div class="col-xl-6 ml-auto mr-auto">
                                 <div class="card p-4 rounded-plus bg-faded">
-                                    <div class="alert alert-danger text-dark" role="alert">
-                                        <strong>Уведомление!</strong> Этот эл. адрес уже занят другим пользователем.
-                                    </div>
-                                    <form id="js-login" novalidate="" action="">
+                                    <?php display_flash_message('danger');?>
+                                    <?php display_flash_message('success');?>
+                                    <form id="js-login" novalidate="" action="register.php" method="post">
                                         <div class="form-group">
                                             <label class="form-label" for="emailverify">Email</label>
-                                            <input type="email" id="emailverify" class="form-control" placeholder="Эл. адрес" required>
+                                            <input type="email" id="emailverify" class="form-control" placeholder="Эл. адрес" required name = "email">
                                             <div class="invalid-feedback">Заполните поле.</div>
                                             <div class="help-block">Эл. адрес будет вашим логином при авторизации</div>
                                         </div>
                                         <div class="form-group">
                                             <label class="form-label" for="userpassword">Пароль <br></label>
-                                            <input type="password" id="userpassword" class="form-control" placeholder="" required>
+                                            <input type="password" id="userpassword" class="form-control" placeholder="" required name = "password">
                                             <div class="invalid-feedback">Заполните поле.</div>
                                         </div>
                                        
